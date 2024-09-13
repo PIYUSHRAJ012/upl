@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Patients List</h1>
+    <a href="{% url 'doctor_create' %}" class="btn btn-primary mb-3">Add Patient Details</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Patient's name</th>
+                <th>Disease</th>
+                <th>Registration's date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in doctors %}
+            <tr>
+                <td>{{ doctor.name }}</td>
+                <td>{{ doctor.specialization }}</td>
+                <td>{{ doctor.years_of_experience }}</td>
+                <td>
+                    <a href="{% url 'doctor_update' doctor.id %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'doctor_delete' doctor.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
